@@ -1,39 +1,43 @@
 {{>header}}
+<!-- Includes the shared header template -->
 
+<h2>Blood Donor Eligibility Check</h2>
 
-
-
-
-<h2> Blood Donor Eligibility Check</h2>
-
-
+<!-- Form submits the donor data to the Spring controller using POST -->
 <form method="POST" action="/submitDonorForm">
 
-
-
-
-
-    <label for="First Name">First Name</label>
+    <!-- First Name label and text input -->
+    <label for="firstName">First Name</label>
     <input id="firstName" type="text" name="firstName"
         {{#donor.firstName}} value="{{donor.firstName}}" {{/donor.firstName}}>
+
+    <!-- Display a validation error for the name the persona gives -->
     {{#validationErrorMap.firstName}}
-       <div class = "error"> {{.}}</div>
+        <div class="error">{{.}}</div>
     {{/validationErrorMap.firstName}}
 
+    <!-- Age input field -->
     <label for="age">Age in Years</label>
-    <input id="age" type="number" name="age" value={{donor.age}}>
+    <input id="age" type="number" name="age" value="{{donor.age}}">
+
+    <!-- Show any validation errors for age -->
     {{#validationErrorMap.age}}
-        <div class = "error"> {{.}}</div>
+        <div class="error">{{.}}</div>
     {{/validationErrorMap.age}}
 
+    <!-- Weight input field -->
     <label for="weight">Weight in Lbs</label>
-    <input id="weight" type="number" name="weight" value={{donor.weight}}>
+    <input id="weight" type="number" name="weight" value="{{donor.weight}}">
+
+    <!-- Show any validation errors for weight -->
     {{#validationErrorMap.weight}}
-        <div class = "error"> {{.}}</div>
+        <div class="error">{{.}}</div>
     {{/validationErrorMap.weight}}
 
+    <!-- Submit button triggers the POST and runs validation + eligibility logic -->
     <button type="submit">Check eligibility</button>
 
-
 </form>
+
 {{>footer}}
+

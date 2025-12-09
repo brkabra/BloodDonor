@@ -1,29 +1,41 @@
 {{>header}}
 
 <div id="result-container">
-    <h2> Results</h2>
+    <h2>Results</h2>
 
+    <!-- Personalized message using the Donor’s name -->
     <p>Thanks for your interest in donating blood, {{donor.firstName}}.</p>
 
+    <!-- Show the donor’s submitted data -->
     <h3>Your Data</h3>
-
     <p>Age: {{donor.age}}</p>
     <p>Weight: {{donor.weight}}</p>
 
+    <!-- Eligibility outcome -->
     <h3>Your results</h3>
+    <p>{{resultMessage}}</p>
 
-    <p> {{ resultMessage }}</p>
-<ul>
-    {{#ineligibleReasons}}
-       <li> {{.}}</li>
-    {{/ineligibleReasons}}
-</ul>
+    <!-- If there are ineligible reasons, Mustache loops through them and prints each one as a list item -->
+    <ul>
+        {{#ineligibleReasons}}
+            <li>{{.}}</li>
+        {{/ineligibleReasons}}
+    </ul>
+
+
+    <!--  This only runs when no ineligibleReasons exist.
+     Meaning the donor passed all eligibility checks!!  -->
     {{^ineligibleReasons}}
-    <a href= "https://www.mbc.org/donate-blood/donor-eligibility/">Continue checking eligibility</a>
+        <a href="https://www.mbc.org/donate-blood/donor-eligibility/">
+            Continue checking eligibility
+        </a>
     {{/ineligibleReasons}}
 </div>
 
+<!-- Navigation back to the home page -->
 <div id="navigation">
     <a href="/">Return to the home page</a>
 </div>
+
 {{>footer}}
+
